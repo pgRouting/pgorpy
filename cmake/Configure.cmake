@@ -1,0 +1,49 @@
+
+#---------------------------------------------
+#  PROJECT_SRC_DIRECTORIES
+#---------------------------------------------
+#
+# Name of the directories that have
+# - SQL code
+# - documentation code
+#
+# structure:
+#
+# directory | sql | doc
+#
+# where:
+#
+# directory: is the name of the directory
+# sql: Y / N value, when "Y" SQL code will be looked for
+# doc: Y / N value, when "Y" Documentation code will be looked for
+#----------------------
+configure_file("configuration.conf" "configuration.conf")
+file(STRINGS configuration.conf PROJECT_CONFIGURATION_FILE)
+
+set(PROJECT_SQL_DIRECTORIES "")
+set(PROJECT_DOC_DIRECTORIES "")
+foreach(line ${PROJECT_CONFIGURATION_FILE})
+  string(REGEX REPLACE "^(#).*" "\\1" comment ${line})
+  if("${comment}" MATCHES "#")
+    continue()
+  endif()
+  string(REGEX REPLACE "^(.*)\\|(.*)\\|(.*)" "\\1" directory ${line})
+  string(REGEX REPLACE "^(.*)\\|(.*)\\|(.*)" "\\2" has_sql ${line})
+  string(REGEX REPLACE "^(.*)\\|(.*)\\|(.*)" "\\3" has_doc ${line})
+
+  string(STRIP ${directory} directory)
+  string(STRIP ${has_sql} has_sql)
+  string(STRIP ${has_doc} has_doc)
+
+  if( ${has_sql} MATCHES "Y")
+    list(APPEND PROJECT_SQL_DIRECTORIES "${directory}")
+  endif()
+  if( ${has_doc} MATCHES "Y")
+    list(APPEND PROJECT_DOC_DIRECTORIES "${directory}")
+  endif()
+endforeach()
+
+if (PROJECT_DEBUG)
+  message(STATUS "PROJECT_SQL_DIRECTORIES ${PROJECT_SQL_DIRECTORIES}")
+  message(STATUS "PROJECT_DOC_DIRECTORIES ${PROJECT_DOC_DIRECTORIES}")
+endif()
