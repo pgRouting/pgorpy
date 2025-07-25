@@ -1,0 +1,17 @@
+
+{# Import the theme's layout. #}
+{% extends "!layout.html" %}
+
+{%- block content %}
+{{ navBar() }}
+<div class="container">
+    <div class="row">
+        {%- block sidebar1 %}{{ bsidebar() }}{% endblock %}
+        <div class="body {{ bs_span_prefix }}{{ bs_content_width }} content" role="main">
+            <script> document.write(get_history('{{ pagename }}','{{ language }}'));  </script>
+            {% block body %}{% endblock %}
+        </div>
+        {% block sidebar2 %} {# possible location for sidebar #} {% endblock %}
+    </div>
+</div>
+{%- endblock %}
