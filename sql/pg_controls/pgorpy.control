@@ -1,0 +1,5 @@
+comment         = '${PROJECT_NAME_LOWER} Extension'
+default_version = '${PROJECT_VERSION}'
+relocatable     = true
+requires        = 'plpgsql'
+requires        = 'plpython3u'
