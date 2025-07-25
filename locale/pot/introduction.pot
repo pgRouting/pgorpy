@@ -1,0 +1,134 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) pgORpy Contributors - Version 0.0
+# This file is distributed under the same license as the pgORpy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: pgORpy 0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-09 10:49-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Introduction"
+msgstr ""
+
+msgid "pgORpy is a `PostgreSQL <https://www.postgresql.org>`__ extension that connects 'OR-tools <https://developers.google.com/optimization>' to the database."
+msgstr ""
+
+msgid "The project is supported and maintained by"
+msgstr ""
+
+msgid "`Paragon Corporation <https://www.paragoncorporation.com/>`__"
+msgstr ""
+
+msgid "`erosion <https://www.erosion.dev/>`__"
+msgstr ""
+
+msgid "and a broad user community."
+msgstr ""
+
+msgid "pgORpy is a sub product of `pgRouting organization <https://pgrouting.org>`__ organization."
+msgstr ""
+
+msgid "License"
+msgstr ""
+
+msgid "The following licenses can be found in pgORpy:"
+msgstr ""
+
+msgid "**License**"
+msgstr ""
+
+msgid "GNU General Public License v2.0 or later"
+msgstr ""
+
+msgid "Most features of pgORpy are available under GNU General Public License v2.0 or later `GPL-2.0-or-later <https://spdx.org/licenses/GPL-2.0-or-later.html>`__."
+msgstr ""
+
+msgid "Apache license Version 2.0"
+msgstr ""
+
+msgid "OR-tools is under `Apache license Version 2.0 <https://github.com/google/or-tools/blob/stable/LICENSE>`__"
+msgstr ""
+
+msgid "Creative Commons Attribution-Share Alike 3.0 License"
+msgstr ""
+
+msgid "The pgORpy Manual and examples is licensed under a `Creative Commons Attribution-Share Alike 3.0 License <https://creativecommons.org/licenses/by-sa/3.0/>`_."
+msgstr ""
+
+msgid "In general license information is included in the header of each source file."
+msgstr ""
+
+msgid "Contributors"
+msgstr ""
+
+msgid "This Release Contributors"
+msgstr ""
+
+msgid "Individuals (in alphabetical order)"
+msgstr ""
+
+msgid "Ashish Kumar"
+msgstr ""
+
+msgid "Github actions for documentation publishing and release"
+msgstr ""
+
+msgid "Virginia Vergara"
+msgstr ""
+
+msgid "Initial version functions"
+msgstr ""
+
+msgid "And all the people that give us a little of their time making comments, finding issues, making pull requests etc."
+msgstr ""
+
+msgid "Corporate Sponsors (in alphabetical order)"
+msgstr ""
+
+msgid "These are corporate entities that have contributed developer time, hosting, or direct monetary funding to the pgORpy project:"
+msgstr ""
+
+msgid "`Erosion developers <https://www.erosion.dev/>`__"
+msgstr ""
+
+msgid "Contributors Past & Present:"
+msgstr ""
+
+msgid "Individuals past & present (in alphabetical order)"
+msgstr ""
+
+msgid "`Ashish Kumar <ashishkr23438@gmail.com>`__"
+msgstr ""
+
+msgid "`Vicky Vergara <vicky@erosion.dev>`__"
+msgstr ""
+
+msgid "Corporate Sponsors past & present (in alphabetical order)"
+msgstr ""
+
+msgid "Erosion developers"
+msgstr ""
+
+msgid "Paragon Corporation"
+msgstr ""
+
+msgid "More Information"
+msgstr ""
+
+msgid "The latest software, documentation and news items are available at the pgORpy web site https://pgorpy.pgrouting.org."
+msgstr ""
+
+msgid "PostgreSQL database server at the PostgreSQL main site https://www.postgresql.org."
+msgstr ""
+
+msgid "Download pgORpy extension at the pgRouting organization github https://github.com/pgRouting/pgorpy"
+msgstr ""
