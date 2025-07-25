@@ -1,0 +1,14 @@
+BEGIN;
+BEGIN
+SET client_min_messages TO NOTICE;
+SET
+/* -- q1 */
+SELECT * FROM por_full_version();
+ version | or_tools
+---------+-----------
+ 0.0.0   | 9.10.4067
+(1 row)
+
+/* -- q2 */
+ROLLBACK;
+ROLLBACK
