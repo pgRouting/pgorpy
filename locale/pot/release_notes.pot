@@ -1,0 +1,56 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) pgORpy Contributors - Version 0.0
+# This file is distributed under the same license as the pgORpy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: pgORpy 0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-09 10:49-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Release Notes"
+msgstr ""
+
+msgid "To see the full list of changes check the list of `Git commits <https://github.com/pgRouting/pgorpy/commits>`_ on Github."
+msgstr ""
+
+msgid "Mayors"
+msgstr ""
+
+msgid "pgORpy 0"
+msgstr ""
+
+msgid "Minors 0.x"
+msgstr ""
+
+msgid "pgORpy 0.0"
+msgstr ""
+
+msgid "Contents"
+msgstr ""
+
+msgid "pgORpy 0.0.0 Release Notes"
+msgstr ""
+
+msgid "To see all issues & pull requests closed by this release see the `Git closed milestone for 0.0.0 <https://github.com/pgRouting/pgorpy/issues?utf8=%E2%9C%93&q=milestone%3A%22Release%200.0.0%22>`_ on Github."
+msgstr ""
+
+msgid "Version functions"
+msgstr ""
+
+msgid "por_version"
+msgstr ""
+
+msgid "Official function"
+msgstr ""
+
+msgid "por_full_version"
+msgstr ""

@@ -1,0 +1,95 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) pgORpy Contributors - Version 0.0
+# This file is distributed under the same license as the pgORpy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: pgORpy 0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-09 10:49-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "``por_full_version``"
+msgstr ""
+
+msgid "``por_full_version`` - Get versions used for building pgORpy."
+msgstr ""
+
+msgid "Availability"
+msgstr ""
+
+msgid "Version 0.0.0"
+msgstr ""
+
+msgid "Official function"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Returns pgORpy version information and or-tools version used."
+msgstr ""
+
+msgid "Signatures"
+msgstr ""
+
+msgid "\\ \\"
+msgstr ""
+
+msgid "por_full_version()"
+msgstr ""
+
+msgid "RETURNS ``TEXT``"
+msgstr ""
+
+msgid "Example"
+msgstr ""
+
+msgid "The versions for this documentation"
+msgstr ""
+
+msgid "Result Columns"
+msgstr ""
+
+msgid "column"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "version"
+msgstr ""
+
+msgid "``TEXT``"
+msgstr ""
+
+msgid "pgORpy version"
+msgstr ""
+
+msgid "or-tools"
+msgstr ""
+
+msgid "OR-tools version"
+msgstr ""
+
+msgid "See Also"
+msgstr ""
+
+msgid ":doc:`por_version`"
+msgstr ""
+
+msgid "Indices and tables"
+msgstr ""
+
+msgid ":ref:`genindex`"
+msgstr ""
+
+msgid ":ref:`search`"
+msgstr ""

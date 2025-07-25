@@ -1,0 +1,155 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) pgORpy Contributors - Version 0.0
+# This file is distributed under the same license as the pgORpy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: pgORpy 0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-09 10:49-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Installation"
+msgstr ""
+
+msgid "Contents"
+msgstr ""
+
+msgid "Instructions for downloading and installing binaries for different Operative systems instructions and additional notes and corrections not included in this documentation can be found in `Installation wiki <https://github.com/pgRouting/pgorpy/wiki/Notes-on-Download%2C-Installation-and-building-pgORpy>`__"
+msgstr ""
+
+msgid "pgORpy is an extension for PostgreSQL."
+msgstr ""
+
+msgid "There is no package for pgorpy."
+msgstr ""
+
+msgid "Get the pgORpy sources"
+msgstr ""
+
+msgid "The pgORpy latest release can be found in https://github.com/pgRouting/pgorpy/releases/latest"
+msgstr ""
+
+msgid "To get this release:"
+msgstr ""
+
+msgid "Download the repository"
+msgstr ""
+
+msgid "Download this release"
+msgstr ""
+
+msgid "Extract the tarball."
+msgstr ""
+
+msgid "Build the extension."
+msgstr ""
+
+msgid "Enabling and upgrading in the database"
+msgstr ""
+
+msgid "Once pgorpy is installed, it needs to be enabled in each individual database you want to use it in."
+msgstr ""
+
+msgid "pgORpy is an extension and depends on `plpython3u <https://www.postgresql.org/docs/current/plpython.html>`__ Enable `plpython3u` before enabling pgORpy in the database."
+msgstr ""
+
+msgid "Upgrading the database"
+msgstr ""
+
+msgid "When the database has an old version of pgORpy then an upgrade is needed."
+msgstr ""
+
+msgid "See also"
+msgstr ""
+
+msgid "https://www.postgresql.org/docs/current/sql-createextension.html"
+msgstr ""
+
+msgid "https://www.postgresql.org/docs/current/sql-alterextension.html"
+msgstr ""
+
+msgid "Dependencies"
+msgstr ""
+
+msgid "Make sure that the following dependencies are met:"
+msgstr ""
+
+msgid "Postgresql version >= 12.0"
+msgstr ""
+
+msgid "CMake >=  3.17"
+msgstr ""
+
+msgid "OR-tools == 9.10.4067"
+msgstr ""
+
+msgid "PostgreSQL extension `plpython3u`"
+msgstr ""
+
+msgid "This example is for PostgreSQL 12.0"
+msgstr ""
+
+msgid "optional dependencies"
+msgstr ""
+
+msgid "For user's documentation:"
+msgstr ""
+
+msgid "Sphinx > 4.0.0"
+msgstr ""
+
+msgid "sphinx-bootstrap-theme"
+msgstr ""
+
+msgid "Example: Installing dependencies on linux"
+msgstr ""
+
+msgid "For developers:"
+msgstr ""
+
+msgid "Tests are done on CI, and these are used on CI:"
+msgstr ""
+
+msgid "Configurable variables"
+msgstr ""
+
+msgid "To see the variables that can be configured"
+msgstr ""
+
+msgid "Testing"
+msgstr ""
+
+msgid "Currently there is no :code:`make test` and testing is done as follows"
+msgstr ""
+
+msgid "The following instructions start from *path/to/pgorpy/*"
+msgstr ""
+
+msgid "Compare the documentation results"
+msgstr ""
+
+msgid "This will create the database `___pgorpy_generator___`"
+msgstr ""
+
+msgid "This will create the database `___pgorpy___pgtap___`"
+msgstr ""
+
+msgid "See Also"
+msgstr ""
+
+msgid "Indices and tables"
+msgstr ""
+
+msgid ":ref:`genindex`"
+msgstr ""
+
+msgid ":ref:`search`"
+msgstr ""

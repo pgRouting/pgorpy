@@ -1,0 +1,99 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) pgORpy Contributors - Version 0.0
+# This file is distributed under the same license as the pgORpy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: pgORpy 0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-09 10:51-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+msgid "Table of Contents"
+msgstr ""
+
+msgid ""
+"pgORpy brings to the database Operations Research tools from `OR-tools "
+"<https://developers.google.com/optimization>`__"
+msgstr ""
+
+msgid "This is the manual for pgORpy |release|."
+msgstr ""
+
+msgid "Creative Commons Attribution-Share Alike 3.0 License"
+msgstr ""
+
+msgid ""
+"The pgORpy Manual is licensed under a `Creative Commons Attribution-Share"
+" Alike 3.0 License <https://creativecommons.org/licenses/by-sa/3.0/>`__."
+msgstr ""
+
+msgid ""
+"Feel free to use this documentation material any way you like, but we ask"
+" that you attribute credit to the pgORpy project and wherever possible, a"
+" link back to https://pgrouting.org."
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid ":doc:`sampledata` that is used in the examples of this manual."
+msgstr ""
+
+msgid ":doc:`functions`"
+msgstr ""
+
+msgid "Utilities"
+msgstr ""
+
+msgid ":doc:`por_version`"
+msgstr ""
+
+msgid ":doc:`por_full_version`"
+msgstr ""
+
+msgid ":doc:`release_notes`"
+msgstr ""
+
+msgid "pgORpy 0.0.0 Release Notes"
+msgstr ""
+
+#, python-format
+msgid ""
+"To see all issues & pull requests closed by this release see the `Git "
+"closed milestone for 0.0.0 "
+"<https://github.com/pgRouting/pgorpy/issues?utf8=%E2%9C%93&q=milestone%3A%22Release%200.0.0%22>`_"
+" on Github."
+msgstr ""
+
+msgid "Version functions"
+msgstr ""
+
+msgid "por_version"
+msgstr ""
+
+msgid "Official function"
+msgstr ""
+
+msgid "por_full_version"
+msgstr ""
+
+msgid "Indices and tables"
+msgstr ""
+
+msgid ":ref:`genindex`"
+msgstr ""
+
+msgid ":ref:`search`"
+msgstr ""
+
