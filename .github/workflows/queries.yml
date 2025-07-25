@@ -1,0 +1,139 @@
+name: Check queries
+
+
+# This action runs:
+# - When this file changes
+# - When changes on code (src, include, sql)
+# - When changes on data or testing scripts (tools/testers)
+# - When the way the build changes (CMakeLists.txt)
+# - On request
+#
+# using
+# - postgres installed version on actions
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/queries.yml'
+      - 'sql/**'
+      - 'docqueries/**'
+      - 'tools/testers/**'
+      - 'CMakeLists.txt'
+      - 'tools/scripts/get_signatures.sh'
+      - 'tools/testers/doc_queries_generator.pl'
+
+    branches-ignore:
+      - 'gh-pages'
+
+    tags: []
+
+  pull_request:
+    paths:
+      - '.github/workflows/queries.yml'
+      - 'sql/**'
+      - 'docqueries/**'
+      - 'tools/testers/**'
+      - 'CMakeLists.txt'
+      - 'tools/scripts/get_signatures.sh'
+      - './tools/testers/doc_queries_generator.pl'
+
+    branches-ignore:
+      - 'gh-pages'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+    release: Release
+    os: ubuntu-latest
+
+jobs:
+  build:
+    name: Check Queries
+    runs-on: ubuntu-latest
+
+    strategy:
+        fail-fast: false
+        matrix:
+          release: [Debug, Release]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get postgres version
+        run: |
+          sudo service postgresql start
+          PGVER=$(psql --version | grep -Po '(?<=psql \(PostgreSQL\) )[^;]+(?=\.\d+ \()')
+          echo "PGVER=${PGVER}" >> $GITHUB_ENV
+          echo "PGPORT=5432" >> $GITHUB_ENV
+          echo "PGBIN=/usr/lib/postgresql/${PGVER}/bin" >> $GITHUB_ENV
+          echo "PGINC=/usr/include/postgresql/${PGVER}/server" >> $GITHUB_ENV
+
+      - name: 'Raise Priority for apt.postgresql.org'
+        run: |
+          cat << EOF >> ./pgdg.pref
+          Package: *
+          Pin: release o=apt.postgresql.org
+          Pin-Priority: 600
+          EOF
+          sudo mv ./pgdg.pref /etc/apt/preferences.d/
+          sudo apt update
+
+      - name: Add PostgreSQL APT repository
+        run: |
+          sudo apt-get purge postgresql-*
+          sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg-testing main ${{ matrix.psql }}" > /etc/apt/sources.list.d/pgdg.list'
+          curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/apt.postgresql.org.gpg >/dev/null
+
+      - name: Install python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            postgresql-${PGVER} \
+            postgresql-${PGVER}-pgtap \
+            postgresql-server-dev-${PGVER} \
+            postgresql-plpython3-${PGVER}
+
+      - name: Install Google OR-Tools
+        run: |
+          sudo pip install --root=/ ortools==9.10.4067
+
+      - name: Configure and build
+        run: |
+          export PATH=/usr/lib/postgresql/${PGVER}/bin:$PATH
+          mkdir build
+          cd build
+          cmake -DSPHINX_HTML=OFF -DCMAKE_BUILD_TYPE=${{ env.release }} ..
+          sudo make install
+
+      - name: Create superuser
+        run: |
+          sudo service postgresql start
+          export PG_RUNNER_USER=`whoami`
+          sudo -u postgres psql -p ${PGPORT} -c "DROP DATABASE IF EXISTS \"${PG_RUNNER_USER}\";"
+          sudo -u postgres psql -p ${PGPORT} -c "DROP ROLE IF EXISTS \"${PG_RUNNER_USER}\";"
+          sudo -u postgres psql -p ${PGPORT} -c "CREATE ROLE \"${PG_RUNNER_USER}\" WITH LOGIN SUPERUSER;"
+          sudo -u postgres psql -p ${PGPORT} -c "CREATE DATABASE \"${PG_RUNNER_USER}\";"
+          echo "PG_RUNNER_USER=${PG_RUNNER_USER}" >> $GITHUB_ENV
+
+      - name: Test signature is up to date
+        run: |
+          sudo service postgresql start
+          tools/scripts/get_signatures.sh -p ${PGPORT}
+          git diff --name-only sql/sigs/*.sig
+          git diff --exit-code --quiet sql/sigs/*.sig
+
+      - name: Test documentation queries are up to date
+        run: |
+          sudo service postgresql start
+          ./tools/testers/doc_queries_generator.pl -pgver "${PGVER}" -U runner -p ${PGPORT}

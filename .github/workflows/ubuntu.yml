@@ -1,0 +1,113 @@
+name: Build for Ubuntu
+
+# This action runs:
+# - When this file changes
+# - When changes on code (sql)
+# - When changes on data or testing scripts (tools/testers)
+# - When the way the build changes (CMakeLists.txt)
+# - On request
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/ubuntu.yml'
+      - 'sql/**'
+      - 'pgtap/**'
+      - 'tools/testers/**'
+      - 'CMakeLists.txt'
+
+    branches-ignore:
+      - 'gh-pages'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+    os: ubuntu-latest
+
+jobs:
+  build:
+    name: pgtap
+    runs-on: ubuntu-latest
+
+    strategy:
+        fail-fast: false
+        matrix:
+          release: [Debug, Release]
+          psql: [12,13,14,15,16,17,18]
+          os: [ubuntu-latest, ubuntu-22.04]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set postgres version
+        run: |
+          echo "PGVER=${{ matrix.psql }}" >> $GITHUB_ENV
+          echo "PGPORT=5432" >> $GITHUB_ENV
+          echo "PGBIN=/usr/lib/postgresql/${{ matrix.psql }}/bin" >> $GITHUB_ENV
+          echo "PGINC=/usr/include/postgresql/${{ matrix.psql }}/server" >> $GITHUB_ENV
+
+      - name: 'Raise Priority for apt.postgresql.org'
+        run: |
+          cat << EOF >> ./pgdg.pref
+          Package: *
+          Pin: release o=apt.postgresql.org
+          Pin-Priority: 600
+          EOF
+          sudo mv ./pgdg.pref /etc/apt/preferences.d/
+          sudo apt update
+
+      - name: Add PostgreSQL APT repository
+        run: |
+          sudo apt-get purge postgresql-*
+          sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg-testing main ${{ matrix.psql }}" > /etc/apt/sources.list.d/pgdg.list'
+          curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/apt.postgresql.org.gpg >/dev/null
+
+      - name: Install python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libtap-parser-sourcehandler-pgtap-perl \
+            postgresql-${PGVER} \
+            postgresql-${PGVER}-pgtap \
+            postgresql-server-dev-${PGVER} \
+            postgresql-plpython3-${PGVER}
+
+      - name: Install Google OR-Tools
+        run: |
+          sudo pip install --root=/ ortools==9.10.4067
+
+      - name: Configure and build
+        run: |
+          export PATH=/usr/lib/postgresql/${PGVER}/bin:$PATH
+          mkdir build
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=${{ matrix.release }} \
+                -DSPHINX_HTML=OFF -DPOSTGRESQL_BIN=${PGBIN} ..
+          sudo make install
+
+      - name: Create superuser
+        run: |
+          sudo service postgresql start
+          export PG_RUNNER_USER=`whoami`
+          sudo -u postgres psql -p ${PGPORT} -c "DROP DATABASE IF EXISTS \"${PG_RUNNER_USER}\";"
+          sudo -u postgres psql -p ${PGPORT} -c "DROP ROLE IF EXISTS \"${PG_RUNNER_USER}\";"
+          sudo -u postgres psql -p ${PGPORT} -c "CREATE ROLE \"${PG_RUNNER_USER}\" WITH LOGIN SUPERUSER;"
+          sudo -u postgres psql -p ${PGPORT} -c "CREATE DATABASE \"${PG_RUNNER_USER}\";"
+          echo "PG_RUNNER_USER=${PG_RUNNER_USER}" >> $GITHUB_ENV
+
+      - name: pgTap test
+        run: |
+          sudo service postgresql start
+          psql -c "CREATE DATABASE ___por___pgtap___;"
+          bash ./tools/testers/pg_prove_tests.sh -U ${PG_RUNNER_USER} -p ${PGPORT} -d ___por___pgtap___
