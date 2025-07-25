@@ -1,4 +1,11 @@
 #!/bin/bash
+# /*PGR-GNU*****************************************************************
+#
+# License: GNU General Public License v2.0
+# Copyright (c) 2025 pgORpy developers
+# Mail: project@pgrouting.org
+#
+# ********************************************************************PGR-GNU*/
 
 set -e
 
@@ -22,7 +29,6 @@ PGVERSION="16"
 PGPORT="${PGPORT:-5432}"
 PGUSER="${PGUSER:-$USER}"
 PGBIN="/usr/lib/postgresql/${PGVERSION}/bin"
-PGINC="/usr/include/postgresql/${PGVERSION}/server"
 
 QUERIES_DIRS="
 "
@@ -31,7 +37,7 @@ TAP_DIRS="
 "
 
 function set_cmake {
-    cmake "-DPOSTGRESQL_BIN=${PGBIN}" "-DPostgreSQL_INCLUDE_DIR=${PGINC}" \
+    cmake "-DPOSTGRESQL_BIN=${PGBIN}" \
         -DSPHINX_HTML=ON  \
         -DPROJECT_DEBUG=ON ..
 
