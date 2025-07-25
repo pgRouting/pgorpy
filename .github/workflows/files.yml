@@ -1,0 +1,65 @@
+name: Check files
+
+
+# Makes a general check on the files
+# Verifies:
+# - the signatures are up-to-date
+# - the release_notes and NEWS are consitent
+# - the files have a license
+# - the shell scripts are ok
+# Does not makes a compilation
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+    working-directory: .github/scripts
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  Signature_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Signatures are not removed
+        run: ./test_signatures.sh
+
+  News_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: News file up to date
+        working-directory: ./
+        run: |
+          .github/scripts/notes2news.pl
+          if git status | grep 'NEWS.md'; then echo "NEWS.md is not up to date"; exit 1; fi
+          if ! grep -q $(grep -Po '(?<=project\(pgORpy VERSION )[^;]+' CMakeLists.txt) NEWS.md; then echo "Missing section in NEWS.md"; exit 1; fi
+
+  License_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Requirements
+        run:  sudo apt install -y licensecheck
+      - name: Run License Check
+        run: ./test_license.sh
+
+  Shell_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Requirements
+        run:  sudo apt-get install -y shellcheck
+      - name: Run Shell Check
+        run: ./test_shell.sh
