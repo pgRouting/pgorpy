@@ -1,0 +1,140 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+env:
+    release: Release
+    os: ubuntu-latest
+    vroom: 1.12.0
+
+jobs:
+  release:
+    name: Release
+    # disbale action, we need discussions on https://github.com/pgRouting/pgorpy/
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+
+    strategy:
+        fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Initialize mandatory git config
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Get postgres version
+        run: |
+          sudo service postgresql start
+          PGVER=$(psql --version | grep -Po '(?<=psql \(PostgreSQL\) )[^;]+(?=\.\d+ \()')
+          echo "PGVER=${PGVER}" >> $GITHUB_ENV
+          echo "PGPORT=5432" >> $GITHUB_ENV
+          PROJECT_VERSION=$(grep -Po '(?<=project\(pgORpy VERSION )[^;]+' CMakeLists.txt)
+          echo "PROJECT_VERSION=${PROJECT_VERSION}" >> $GITHUB_ENV
+          echo "TAG_NAME=v${PROJECT_VERSION}" >> $GITHUB_ENV
+
+      - name: Create and Push Tag
+        run: |
+          git tag -a "${TAG_NAME}" -m "Release version ${TAG_NAME}"
+          git push origin "${TAG_NAME}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+
+          # Basic dependencies
+          sudo apt-get install -y \
+            postgresql-${PGVER} \
+            postgresql-server-dev-${PGVER}
+
+          # documentation dependencies
+          sudo apt-get install -y \
+            graphviz \
+            python3-sphinx \
+            python3-sphinx-bootstrap-theme
+
+      - name: Install Google OR-Tools
+        run: |
+          sudo pip install --root=/ ortools==9.10.4067
+
+      - name: Configure
+        run: |
+          mkdir build
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=${{ env.release }} ..
+
+      - name: Build
+        run: |
+          cd build
+          make doc
+
+      - name: Update Users Documentation
+        run: |
+          git checkout origin/gh-pages
+          git checkout -b gh-pages
+          PROJECT_MAJOR="v${PROJECT_VERSION%%.*}"
+          rm -rf ${PROJECT_MAJOR}
+          cp -r build/doc/_build ${PROJECT_MAJOR}
+          git add ${PROJECT_MAJOR}
+          git diff-index --quiet HEAD || git commit -m "Update users documentation for ${PROJECT_VERSION} (tag ${TAG_NAME})"
+          git fetch origin
+          git rebase origin/gh-pages
+          git push origin gh-pages
+          git checkout @{-2}
+
+      - name: Download Assets
+        run: |
+          wget -c https://github.com/${{ github.repository }}/archive/${TAG_NAME}.zip
+          wget -c https://github.com/${{ github.repository }}/archive/${TAG_NAME}.tar.gz
+          mv ${TAG_NAME}.zip ${{ github.event.repository.name }}-${PROJECT_VERSION}.zip
+          mv ${TAG_NAME}.tar.gz ${{ github.event.repository.name }}-${PROJECT_VERSION}.tar.gz
+
+      - name: Make Attachments
+        run: |
+          cd build/doc/_build
+
+          cp -r html doc-v${PROJECT_VERSION}-en
+          rm -rf doc-v${PROJECT_VERSION}-en/es
+          tar -zcvf doc-v${PROJECT_VERSION}-en.tar.gz doc-v${PROJECT_VERSION}-en
+
+          cd ../..
+          cat NEWS.md | tr '\0' '\n' > release_body.txt
+
+          # Only executed during the first release
+          grep -q '[^[:space:]]' < release_body.txt || cp NEWS.md release_body.txt
+
+          echo >> release_body.txt
+          echo "**Attachments**" >> release_body.txt
+          echo "File | Contents" >> release_body.txt
+          echo "| --- | --- |" >> release_body.txt
+          echo "| \`doc-v${PROJECT_VERSION}-en.tar.gz\` | English documentation. Redirection to English" >> release_body.txt
+          echo "| \`pgorpy-${PROJECT_VERSION}.tar.gz\` | tar.gz of the release" >> release_body.txt
+          echo "| \`pgorpy-${PROJECT_VERSION}.zip\` | zip of the release" >> release_body.txt
+          cat release_body.txt
+
+      - name: Create Draft Release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: release_body.txt
+          name: ${{ env.TAG_NAME }}
+          draft: true
+          prerelease: false
+          files: |
+            build/doc/doc-v${{ env.PROJECT_VERSION }}-en.tar.gz
+            ${{ github.event.repository.name }}-${{ env.PROJECT_VERSION }}.zip
+            ${{ github.event.repository.name }}-${{ env.PROJECT_VERSION }}.tar.gz
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
