@@ -40,6 +40,7 @@ General
     introduction
     installation
     support
+    concepts
 
 - :doc:`sampledata` that is used in the examples of this manual.
 
@@ -65,6 +66,7 @@ General
 
 .. include:: release_notes.rst
    :start-after: current
+   :end-before: pgORpy 0.0.0
 
 .. toctree::
    :hidden:

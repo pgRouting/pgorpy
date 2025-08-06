@@ -1,5 +1,6 @@
 
 SET(LOCAL_FILES
+  concepts.rst
   functions.rst
   index.rst
   introduction.rst
