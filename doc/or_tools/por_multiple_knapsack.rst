@@ -1,40 +1,31 @@
 ..
    ****************************************************************************
-    vrpRouting Manual
-    Copyright(c) vrpRouting Contributors
+    pgORpy Manual
+    Copyright(c) pgORpy Contributors
     This documentation is licensed under a Creative Commons Attribution-Share
     Alike 3.0 License: https://creativecommons.org/licenses/by-sa/3.0/
    ****************************************************************************
 
+.. index::
+   single: Knapsack problems ; por_multiple_knapsack
+   single: multiple_knapsack
 
 |
 
-* `Documentation <https://vrp.pgrouting.org/>`__ → `vrpRouting v0 <https://vrp.pgrouting.org/v0>`__
-* Supported Versions
-  `Latest <https://vrp.pgrouting.org/latest/en/vrp_oneDepot.html>`__
-  (`v0 <https://vrp.pgrouting.org/v0/en/vrp_oneDepot.html>`__)
-
-vrp_multiple_knapsack - Experimental
+``por_multiple_knapsack``
 ===============================================================================
-
-.. include:: experimental.rst
-   :start-after: begin-warn-expr
-   :end-before: end-warn-expr
 
 .. rubric:: Availability
 
-Version 0.4.0
+.. rubric:: Version 0.0.1
 
-* New **experimental** function
-
-  * vrp_knapsack
-
-
+* New function
+* Support for or-tools v9.10.4067
 
 Description
 -------------------------------------------------------------------------------
 
-The multiple knapsack problem is a problem in combinatorial optimization: 
+The multiple knapsack problem is a problem in combinatorial optimization:
 it is a more general verison of the classic knapsack problem where instead of a
 single knapsack, you will be given multiple knapsacks and your goal is maximise the total
 value of packed items in all knapsacks.
@@ -42,52 +33,87 @@ value of packed items in all knapsacks.
 Signatures
 -------------------------------------------------------------------------------
 
-.. include:: ../../sql/or_tools/multiple_knapsack.sql
-   :start-after: signature start
-   :end-before: signature end
+.. admonition:: \ \
+   :class: signatures
+
+   | por_multiple_knapsack(`Weight Costs SQL`_, capacities, [,``max_rows``])
+   | RETURNS SET OF (knapsack, id)
+   | OR EMPTY SET
 
 Parameters
 -------------------------------------------------------------------------------
 
-.. include:: ../../sql/or_tools/multiple_knapsack.sql
-   :start-after: parameters start
-   :end-before: parameters end
+.. list-table::
+   :width: 81
+   :widths: 14 14 44
+   :header-rows: 1
+
+   * - Column
+     - Type
+     - Description
+   * - `Weight Costs SQL`_
+     - ``TEXT``
+     - `Weight Costs SQL`_ as described below
+   * - capacities
+     - ``ARRAY[`` **ANY-INTEGER** ``]``
+     - An array describing the capacity of each knapsack.
 
 Optional Parameters
 ...............................................................................
 
-.. include:: ../../sql/or_tools/multiple_knapsack.sql
-   :start-after: optional parameters start
-   :end-before: optional parameters end
+.. list-table::
+   :width: 81
+   :widths: auto
+   :header-rows: 1
+
+   * - Column
+     - Type
+     - Default
+     - Description
+   * - ``max_rows``
+     - **ANY-INTEGER**
+     - :math:`100000`
+     - Maximum items(rows) to fetch from bin_packing table.
 
 Inner Queries
 -------------------------------------------------------------------------------
 
-Weights_Costs SQL
+Weight Costs SQL
 ...............................................................................
 
-.. include:: ../../sql/or_tools/multiple_knapsack.sql
-   :start-after: Weights_Costs start
-   :end-before: Weights_Costs end
+.. include:: concepts.rst
+   :start-after: weight_costs_start
+   :end-before: weight_costs_end
 
 Result Columns
 -------------------------------------------------------------------------------
 
-.. include:: ../../sql/or_tools/multiple_knapsack.sql
-   :start-after: result start
-   :end-before: result end
+.. list-table::
+   :width: 81
+   :widths: auto
+   :header-rows: 1
+
+   * - Column
+     - Type
+     - Description
+   * - ``knapsak``
+     - ``INTEGER``
+     - Indentifier of the knapsack.
+   * - ``id``
+     - ``INTEGER``
+     - Indentifier of an item in the ``knapsack``.
 
 Example
 -------------------------------------------------------------------------------
 
-.. literalinclude:: doc-vrp_multiple_knapsack.queries
+.. literalinclude:: multiple_knapsack.queries
    :start-after: -- example_start
    :end-before: -- example_end
 
 See Also
 -------------------------------------------------------------------------------
 
-.. include:: or_tools-category.rst
+.. include:: concepts.rst
    :start-after: see_also_start
    :end-before: see_also_end
 
