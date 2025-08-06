@@ -1,7 +1,14 @@
-BEGIN;
-SET search_path TO 'ortools', 'public';
+/*PGR-GNU*****************************************************************
 
-SELECT CASE WHEN min_version('0.3.0') THEN plan (48) ELSE plan(1) END;
+License: GNU General Public License v2.0
+Copyright (c) 2025 pgORpy developers
+Mail: project@pgrouting.org
+
+ ********************************************************************PGR-GNU*/
+
+BEGIN;
+
+SELECT plan(48);
 
 CREATE OR REPLACE FUNCTION test_value(fn TEXT, inner_query_table TEXT, start_sql TEXT, rest_sql TEXT, params TEXT[], parameter TEXT, accept TEXT[], reject TEXT[])
 RETURNS SETOF TEXT AS
@@ -12,6 +19,7 @@ DECLARE
   p TEXT;
   type_name TEXT;
 BEGIN
+
   start_sql = 'SELECT * FROM ' || fn || '(' || start_sql || '$$ SELECT ';
   FOREACH p IN ARRAY params
   LOOP
@@ -33,6 +41,7 @@ BEGIN
     RETURN query SELECT throws_ok(query, 38000);
   END LOOP;
 END;
+
 $BODY$ LANGUAGE plpgsql;
 
 
@@ -58,15 +67,10 @@ DECLARE
   inner_query_table TEXT;
   params TEXT[];
 BEGIN
-  IF NOT min_version('0.3.0') THEN
-    RETURN QUERY
-    SELECT skip(1, 'Function is modified on 0.3.0');
-    RETURN;
-  END IF;
 
-  -- vrp_knapsack
-  fn := 'vrp_knapsack';
-  inner_query_table := 'knapsack_data';
+  -- por_knapsack
+  fn := 'por_knapsack';
+  inner_query_table := 'knapsack';
   start_sql := '';
   rest_sql := ', 15)';
   params := ARRAY['id', 'weight', 'cost'];
@@ -74,19 +78,19 @@ BEGIN
   RETURN QUERY SELECT test_anyInteger(fn, inner_query_table, start_sql, rest_sql, params, 'weight');
   RETURN QUERY SELECT test_anyInteger(fn, inner_query_table, start_sql, rest_sql, params, 'cost');
 
-  -- vrp_multiple_knapsack
-  fn := 'vrp_multiple_knapsack';
-  inner_query_table := 'multiple_knapsack_data';
+  -- por_multiple_knapsack
+  fn := 'por_multiple_knapsack';
+  inner_query_table := 'multiple_knapsack';
   start_sql := '';
   rest_sql := ', ARRAY[100,100,100,100,100])';
   params := ARRAY['id', 'weight', 'cost'];
   RETURN QUERY SELECT test_anyInteger(fn, inner_query_table, start_sql, rest_sql, params, 'id');
   RETURN QUERY SELECT test_anyInteger(fn, inner_query_table, start_sql, rest_sql, params, 'weight');
   RETURN QUERY SELECT test_anyInteger(fn, inner_query_table, start_sql, rest_sql, params, 'cost');
-  
+
   -- bin_packing
-  fn := 'vrp_bin_packing';
-  inner_query_table := 'bin_packing_data';
+  fn := 'por_bin_packing';
+  inner_query_table := 'bin_packing';
   start_sql := '';
   rest_sql := ', 100)';
   params := ARRAY['id', 'weight'];

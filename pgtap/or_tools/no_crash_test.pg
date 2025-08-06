@@ -1,7 +1,14 @@
+/*PGR-GNU*****************************************************************
+
+License: GNU General Public License v2.0
+Copyright (c) 2025 pgORpy developers
+Mail: project@pgrouting.org
+
+ ********************************************************************PGR-GNU*/
+
 BEGIN;
-SET search_path TO 'ortools', 'public';
-SET client_min_messages TO ERROR;
-SELECT CASE WHEN min_version('0.3.0') THEN plan (18) ELSE plan(1) END;
+
+SELECT plan(18);
 
 CREATE OR REPLACE FUNCTION no_crash()
 RETURNS SETOF TEXT AS
@@ -12,9 +19,9 @@ subs TEXT[];
 error_messages TEXT[];
 non_empty_args INTEGER[];
 BEGIN
-    -- vrp_knapsack
+    -- por_knapsack
     params = ARRAY[
-    '$$SELECT * FROM ortools.knapsack_data$$',
+    '$$SELECT * FROM knapsack$$',
     'capacity => 15',
     'max_rows => 100000'
     ]::TEXT[];
@@ -29,12 +36,12 @@ BEGIN
     ''
     ]::TEXT[];
     non_empty_args = ARRAY[0, 1, 2, 3]::INTEGER[];
-    
-    RETURN QUERY SELECT * FROM no_crash_test('vrp_knapsack', params, subs, error_messages, non_empty_args);
 
-    --vrp_multiple_knapsack
+    RETURN QUERY SELECT * FROM no_crash_test('por_knapsack', params, subs, error_messages, non_empty_args);
+
+    --por_multiple_knapsack
     params = ARRAY[
-    '$$SELECT * FROM ortools.multiple_knapsack_data$$',
+    '$$SELECT * FROM multiple_knapsack$$',
     'capacities => ARRAY[100,100,100,100,100]',
     'max_rows => 100000'
     ]::TEXT[];
@@ -49,12 +56,12 @@ BEGIN
     ''
     ]::TEXT[];
     non_empty_args = ARRAY[0, 1, 2, 3]::INTEGER[];
-    
-    RETURN QUERY SELECT * FROM no_crash_test('vrp_multiple_knapsack', params, subs, error_messages, non_empty_args);
+
+    RETURN QUERY SELECT * FROM no_crash_test('por_multiple_knapsack', params, subs, error_messages, non_empty_args);
 
     -- bin_packing
     params = ARRAY[
-    '$$SELECT * FROM ortools.bin_packing_data$$',
+    '$$SELECT * FROM bin_packing$$',
     'bin_capacity => 100',
     'max_rows => 100000'
     ]::TEXT[];
@@ -69,8 +76,8 @@ BEGIN
     ''
     ]::TEXT[];
     non_empty_args = ARRAY[0, 1, 2, 3]::INTEGER[];
-    
-    RETURN QUERY SELECT * FROM no_crash_test('vrp_bin_packing', params, subs, error_messages, non_empty_args);
+
+    RETURN QUERY SELECT * FROM no_crash_test('por_bin_packing', params, subs, error_messages, non_empty_args);
 END
 $BODY$
 LANGUAGE plpgsql VOLATILE;
