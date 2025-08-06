@@ -14,9 +14,10 @@ var titles = [
 
 var newpages = [
     {v: '0.0', pages: [
-        'index', 'installation', 'introduction', 'release_notes',
+        'concepts', 'functions', 'index', 'installation', 'introduction', 'release_notes',
         'sampledata', 'support',
-        'por_full_version', 'por_version'
+        'por_full_version', 'por_version',
+        'por_bin_packing', 'por_knapsack', 'por_miltiple_knapsack'
     ] },
 ];
 
