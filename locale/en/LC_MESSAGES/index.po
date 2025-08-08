@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pgORpy 0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-09 10:51-0600\n"
+"POT-Creation-Date: 2025-08-09 10:57-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -62,30 +62,48 @@ msgstr ""
 msgid ":doc:`por_full_version`"
 msgstr ""
 
+msgid "OR-tools"
+msgstr ""
+
+msgid ":doc:`por_bin_packing`"
+msgstr ""
+
+msgid ":doc:`por_knapsack`"
+msgstr ""
+
+msgid ":doc:`por_multiple_knapsack`"
+msgstr ""
+
 msgid ":doc:`release_notes`"
 msgstr ""
 
-msgid "pgORpy 0.0.0 Release Notes"
+msgid "pgORpy 0.0.1 Release Notes"
 msgstr ""
 
 #, python-format
 msgid ""
 "To see all issues & pull requests closed by this release see the `Git "
-"closed milestone for 0.0.0 "
-"<https://github.com/pgRouting/pgorpy/issues?utf8=%E2%9C%93&q=milestone%3A%22Release%200.0.0%22>`_"
+"closed milestone for 0.0.1 "
+"<https://github.com/pgRouting/pgorpy/issues?utf8=%E2%9C%93&q=milestone%3A%22Release%200.0.1%22>`_"
 " on Github."
 msgstr ""
 
 msgid "Version functions"
 msgstr ""
 
-msgid "por_version"
+msgid "por_bin_backing"
 msgstr ""
 
-msgid "Official function"
+msgid "New function"
 msgstr ""
 
-msgid "por_full_version"
+msgid "Support for or-tools v9.10.4067"
+msgstr ""
+
+msgid "por_knapsack"
+msgstr ""
+
+msgid "por_multiple_knapsack"
 msgstr ""
 
 msgid "Indices and tables"

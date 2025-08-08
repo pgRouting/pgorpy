@@ -1,0 +1,167 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) pgORpy Contributors - Version 0.0
+# This file is distributed under the same license as the pgORpy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: pgORpy 0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-09 10:57-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "``por_multiple_knapsack``"
+msgstr ""
+
+msgid "Availability"
+msgstr ""
+
+msgid "Version 0.0.1"
+msgstr ""
+
+msgid "New function"
+msgstr ""
+
+msgid "Support for or-tools v9.10.4067"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "The multiple knapsack problem is a problem in combinatorial optimization: it is a more general verison of the classic knapsack problem where instead of a single knapsack, you will be given multiple knapsacks and your goal is maximise the total value of packed items in all knapsacks."
+msgstr ""
+
+msgid "Signatures"
+msgstr ""
+
+msgid "\\ \\"
+msgstr ""
+
+msgid "por_multiple_knapsack(`Weight Costs SQL`_, capacities, [,``max_rows``])"
+msgstr ""
+
+msgid "RETURNS SET OF (knapsack, id)"
+msgstr ""
+
+msgid "OR EMPTY SET"
+msgstr ""
+
+msgid "Parameters"
+msgstr ""
+
+msgid "Column"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "`Weight Costs SQL`_"
+msgstr ""
+
+msgid "``TEXT``"
+msgstr ""
+
+msgid "`Weight Costs SQL`_ as described below"
+msgstr ""
+
+msgid "capacities"
+msgstr ""
+
+msgid "``ARRAY[`` **ANY-INTEGER** ``]``"
+msgstr ""
+
+msgid "An array describing the capacity of each knapsack."
+msgstr ""
+
+msgid "Optional Parameters"
+msgstr ""
+
+msgid "Default"
+msgstr ""
+
+msgid "``max_rows``"
+msgstr ""
+
+msgid "**ANY-INTEGER**"
+msgstr ""
+
+msgid ":math:`100000`"
+msgstr ""
+
+msgid "Maximum items(rows) to fetch from bin_packing table."
+msgstr ""
+
+msgid "Inner Queries"
+msgstr ""
+
+msgid "Weight Costs SQL"
+msgstr ""
+
+msgid "``id``"
+msgstr ""
+
+msgid "Unique identifier of the item."
+msgstr ""
+
+msgid "``weight``"
+msgstr ""
+
+msgid "Weight of the item."
+msgstr ""
+
+msgid "``cost``"
+msgstr ""
+
+msgid "Cost of the item."
+msgstr ""
+
+msgid "Where:"
+msgstr ""
+
+msgid "ANY-INTEGER"
+msgstr ""
+
+msgid "``SMALLINT``, ``INTEGER``, ``BIGINT``"
+msgstr ""
+
+msgid "Result Columns"
+msgstr ""
+
+msgid "``knapsak``"
+msgstr ""
+
+msgid "``INTEGER``"
+msgstr ""
+
+msgid "Indentifier of the knapsack."
+msgstr ""
+
+msgid "Indentifier of an item in the ``knapsack``."
+msgstr ""
+
+msgid "Example"
+msgstr ""
+
+msgid "See Also"
+msgstr ""
+
+msgid "`Wikipedia: Bin Packing problems <https://en.wikipedia.org/wiki/Bin_packing_problem>`__"
+msgstr ""
+
+msgid "`OR-Tools: Google OR-Tools <https://developers.google.com/optimization>`__"
+msgstr ""
+
+msgid "Indices and tables"
+msgstr ""
+
+msgid ":ref:`genindex`"
+msgstr ""
+
+msgid ":ref:`search`"
+msgstr ""

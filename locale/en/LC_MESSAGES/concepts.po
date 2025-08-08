@@ -1,0 +1,141 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) pgORpy Contributors - Version 0.0
+# This file is distributed under the same license as the pgORpy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: pgORpy 0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-09 10:57-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+msgid "Concepts"
+msgstr ""
+
+msgid "Contents"
+msgstr ""
+
+msgid "Synopsis"
+msgstr ""
+
+msgid ""
+"OR-Tools is an open source software suite for optimization, tuned for "
+"tackling the world's toughest problems in vehicle routing, flows, integer"
+" and linear programming, and constraint programming."
+msgstr ""
+
+msgid "OR-Tools can solve"
+msgstr ""
+
+msgid "VR (Vehicle Routing)"
+msgstr ""
+
+msgid "Scheduling"
+msgstr ""
+
+msgid "Bin Packing"
+msgstr ""
+
+msgid "Currently only Bin Packing problems can be solved with OR-Tools in pgORpy."
+msgstr ""
+
+msgid "Terminologies"
+msgstr ""
+
+msgid ""
+"**weight**: For each item, a positive integer weight is associated with "
+"it."
+msgstr ""
+
+msgid ""
+"**cost**: For each item, a positive integer cost(value) is associated "
+"with it."
+msgstr ""
+
+msgid "**capacity**: Maximum storage capacity of a knapsack or a bin."
+msgstr ""
+
+msgid "Inner Queries"
+msgstr ""
+
+msgid "Weight Costs SQL"
+msgstr ""
+
+msgid "A ``SELECT`` statement that returns the following columns:"
+msgstr ""
+
+msgid "Column"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "``id``"
+msgstr ""
+
+msgid "**ANY-INTEGER**"
+msgstr ""
+
+msgid "Unique identifier of the item."
+msgstr ""
+
+msgid "``weight``"
+msgstr ""
+
+msgid "Weight of the item."
+msgstr ""
+
+msgid "``cost``"
+msgstr ""
+
+msgid "Cost of the item."
+msgstr ""
+
+msgid "Where:"
+msgstr ""
+
+msgid "ANY-INTEGER"
+msgstr ""
+
+msgid "``SMALLINT``, ``INTEGER``, ``BIGINT``"
+msgstr ""
+
+msgid "Weights SQL"
+msgstr ""
+
+msgid "Identifier of the item."
+msgstr ""
+
+msgid "See Also"
+msgstr ""
+
+msgid ""
+"`Wikipedia: Bin Packing problems "
+"<https://en.wikipedia.org/wiki/Bin_packing_problem>`__"
+msgstr ""
+
+msgid "`OR-Tools: Google OR-Tools <https://developers.google.com/optimization>`__"
+msgstr ""
+
+msgid "Indices and tables"
+msgstr ""
+
+msgid ":ref:`genindex`"
+msgstr ""
+
+msgid ":ref:`search`"
+msgstr ""
+

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pgORpy 0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-09 10:49-0600\n"
+"POT-Creation-Date: 2025-08-09 10:57-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -29,6 +29,18 @@ msgid ":doc:`por_version`"
 msgstr ""
 
 msgid ":doc:`por_full_version`"
+msgstr ""
+
+msgid "OR-tools"
+msgstr ""
+
+msgid ":doc:`por_bin_packing`"
+msgstr ""
+
+msgid ":doc:`por_knapsack`"
+msgstr ""
+
+msgid ":doc:`por_multiple_knapsack`"
 msgstr ""
 
 msgid "Indices and tables"
