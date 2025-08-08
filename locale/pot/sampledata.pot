@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pgORpy 0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-09 10:49-0600\n"
+"POT-Creation-Date: 2025-08-09 10:57-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,4 +23,7 @@ msgid "The documentation provides very simple example queries based on a small s
 msgstr ""
 
 msgid "Function to activate python on a local environment"
+msgstr ""
+
+msgid "Sample data"
 msgstr ""
