@@ -65,6 +65,12 @@ Individuals (in alphabetical order)
 
   - Github actions for documentation publishing and release
 
+- Manas Sivakumar
+
+  - por_bin_backing
+  - por_knapsack
+  - por_multiple_knapsack
+
 - Virginia Vergara
 
   - Initial version functions
@@ -91,6 +97,15 @@ Individuals past & present (in alphabetical order)
 - `Ashish Kumar <ashishkr23438@gmail.com>`__
 
   - Github actions for documentation publishing and release
+
+- `Manas Sivakumar <manas23601@gmail.com>`__
+
+  Support for or-tools v9.10.4067 on the following functions
+
+  - por_bin_backing
+  - por_knapsack
+  - por_multiple_knapsack
+
 
 - `Vicky Vergara <vicky@erosion.dev>`__
 
