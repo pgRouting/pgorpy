@@ -6,7 +6,7 @@ SET
 SELECT * FROM por_full_version();
  version | or_tools
 ---------+-----------
- 0.0.0   | 9.10.4067
+ 0.0.1   | 9.10.4067
 (1 row)
 
 /* -- q2 */
